@@ -51,7 +51,7 @@ def api_status(server_id=None, service_id=None):
     alert_counts = ssn.query(
         models.Alert.server_id,
         models.Alert.service_id,
-        func.count(models.Alert)
+        func.count(models.Alert.server_id)
     ) \
         .filter(
             models.Alert.ctime >= (datetime.utcnow() - timedelta(hours=24)),

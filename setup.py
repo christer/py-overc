@@ -1,3 +1,4 @@
+# coding=utf-8
 #!/usr/bin/env python
 """ Simplistic monitoring solution that is a pleasure to use """
 
@@ -40,7 +41,6 @@ setup(
 
     platforms='any',
     classifiers=[
-        # https://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Flask',
@@ -49,6 +49,5 @@ setup(
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2',
-        #'Programming Language :: Python :: 3',
     ],
 )

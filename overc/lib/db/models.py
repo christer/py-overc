@@ -27,6 +27,7 @@ class Server(Base):
 
     __table_args__ = (
         UniqueConstraint(name),
+        {'sqlite_autoincrement': True}
     )
 
     def __str__(self):
@@ -52,6 +53,7 @@ class Service(Base):
 
     __table_args__ = (
         UniqueConstraint(server_id, name),
+        {'sqlite_autoincrement': True}
     )
 
     def update_timed_out(self):
@@ -100,7 +102,7 @@ class ServiceState(Base):
     """ Service state """
     __tablename__ = 'service_states'
 
-    id = Column(BigInteger, primary_key=True, nullable=False)
+    id = Column(Integer, primary_key=True, nullable=False)
     service_id = Column(Integer, ForeignKey(Service.id, ondelete='CASCADE'), nullable=False, doc="Service id")
 
     checked = Column(Boolean, nullable=False, default=False, doc="State checked (alerts created)?")
@@ -113,7 +115,8 @@ class ServiceState(Base):
 
     __table_args__ = (
         Index('idx_serviceid_rtime_id', service_id, rtime, id),
-        Index('idx_checked', checked)
+        Index('idx_checked', checked),
+        {'sqlite_autoincrement': True}
     )
 
     @property
@@ -150,7 +153,7 @@ class Alert(Base):
     """ Reported alerts """
     __tablename__ = 'alerts'
 
-    id = Column(BigInteger, primary_key=True, nullable=False)
+    id = Column(Integer, primary_key=True, nullable=False)
     server_id = Column(Integer, ForeignKey(Server.id, ondelete='CASCADE'), nullable=True, doc="Server id")
     service_id = Column(Integer, ForeignKey(Service.id, ondelete='CASCADE'), nullable=True, doc="Service id")
     service_state_id = Column(BigInteger, ForeignKey(ServiceState.id, ondelete='SET NULL'), nullable=True, doc="Service state id (if any)")
@@ -168,6 +171,7 @@ class Alert(Base):
 
     __table_args__ = (
         Index('idx_reported', reported),
+        {'sqlite_autoincrement': True}
     )
 
     def __unicode__(self):
