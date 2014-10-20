@@ -108,6 +108,10 @@
                         </ul>
                     </td>
                 </tr>
+                <tr>
+                    <div class="label label-danger" ng-if="stats.has_error" title="ERROR">ZABBIX_ERROR</div>
+                    <div class="label label-success" ng-if="!stats.has_error" title="OK">ZABBIX_OK</div>
+                </tr>
             </TBODY>
         </table>
     </script>
@@ -148,6 +152,7 @@
                 </tr>
             </TBODY>
         </table>
+
     </script>
     <!-- /Services -->
 

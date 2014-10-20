@@ -85,7 +85,7 @@ def api_status(server_id=None, service_id=None):
         .scalar()
 
     # Format
-    return {
+    result = {
         # Statistics
         'stats': {
             'n_alerts': total_alerts,  # alerts today (for all selected servers)
@@ -119,6 +119,17 @@ def api_status(server_id=None, service_id=None):
             } for server in servers
         ], cmp, lambda s: s['name'])
     }
+
+    error = False
+    for server in result['servers']:
+        for service in server['services']:
+            if service['state']['state'] != 'OK' or service['state']['timed_out'] == True:
+                error = True
+                break
+
+    result['stats']['has_error'] = error
+
+    return result
 
 
 @bp.route('/api/status/service/<int:service_id>/states')
