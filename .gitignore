@@ -13,6 +13,7 @@
 .nbproject
 .project
 *.sublime-project
+.ropeproject
 
 # Temps
 *~
@@ -36,6 +37,7 @@ __pycache__
 # Runtime
 /*.log
 /*.pid
+/quickstart_server.ve
 
 # ===[ EXCLUDES ]=== #
 !.gitkeep
