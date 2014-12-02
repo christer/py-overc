@@ -1,5 +1,5 @@
-# coding=utf-8
 #!/usr/bin/env python
+# coding=utf-8
 """ Simplistic monitoring solution that is a pleasure to use """
 
 from setuptools import setup, find_packages
