@@ -19,7 +19,7 @@ VE=quickstart_server.ve
 if [[ ! -d $VE ]]; then
     virtualenv -p $(which python2) $VE
 fi
-$VE/bin/pip install --quiet flask sqlalchemy
+$VE/bin/pip install --quiet flask sqlalchemy .
 
 export PYTHONPATH=$(pwd):$PYTHONPATH
 exec $VE/bin/python -m werkzeug.serving -b 0.0.0.0:5000 overc.wsgi:app
